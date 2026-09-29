@@ -79,7 +79,7 @@ THIS HALLOWEEN, NOBODY LEAVES INNOCENT. 👹`,
 
   api: {
     register: "https://script.google.com/macros/s/AKfycbzGM0sdfcAhL7neelxS6rUV24vRIaWy5NeCIHTOtWVsdWFMRX3JKRnYnJ9coSDT1Rdx/exec",
-    ticket: "https://script.google.com/macros/s/AKfycbwU3Uaxj-MSVhExvgnrvQxSaEaPvnwIlzbQuqMMx7JnRtW3-kJcYqi2rToP1yUyQMQw/exec"
+    ticket: "https://script.google.com/macros/s/AKfycbwjqJ9LwKywp8O0hRq8EDW2hSz_1XCaHyUldbFiOkDJxz5yb2SkBTOsN8-IEMzTI7qm/exec"
   }
 };
 
