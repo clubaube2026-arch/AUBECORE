@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUBECORE — The digital home of AUBE</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain-layer"></div>
+<div class="ambient-glow"></div>
+
+<!-- ================= NAV ================= -->
+<nav id="site-nav">
+  <div class="nav-brand chrome-text">AUBECORE</div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  <div class="nav-links" id="navLinks">
+    <button class="nav-link" data-target="hero">Event</button>
+    <button class="nav-link" data-target="about">About</button>
+    <button class="nav-link" data-target="tickets">Tickets</button>
+    <button class="nav-link" data-target="contact">Contact</button>
+    <button class="btn btn-primary nav-cta" id="navBuyBtn">Buy Tickets</button>
+  </div>
+</nav>
+
+<!-- ================= SCREEN : ENTRY ================= -->
+<div class="screen" id="screen-entry">
+  <div class="entry-brand-wrap">
+    <div class="entry-brand chrome-text" id="entryBrandText">AUBECORE</div>
+    <p class="entry-brand-tagline">where strangers arrive, and stories begin.</p>
+  </div>
+  <div class="screen-inner">
+    <h1 class="chrome-text">Are you a stranger?</h1>
+    <div class="sub">Have we met before?</div>
+    <div class="entry-choices">
+      <div class="choice-card glass" id="choiceFirstTime">
+        <span class="tag">First visit</span>
+        <h3>Yes, first time</h3>
+        <p>Let us show you what AUBE is, and what's happening right now.</p>
+      </div>
+      <div class="choice-card glass" id="choiceReturning">
+        <span class="tag">Welcome back</span>
+        <h3>I've been to AUBE before</h3>
+        <p>Skip the introduction. Take me straight to the tickets.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="entry-toast glass" id="entryToast">
+    <button class="close-x" id="entryToastClose" aria-label="Close">✕</button>
+    <h4>First time here?</h4>
+    <p>We'd love to have you run with us. Grab a seat before the room fills up.</p>
+    <button class="pill-cta" id="spotSeatBtnEntry" type="button">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 3l7 4v10l-7 4-7-4V7l7-4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M12 3v18" stroke="currentColor" stroke-width="1.2" opacity=".5"/>
+      </svg>
+      Spot Your Seat
+    </button>
+  </div>
+</div>
+
+<!-- ================= MAIN SITE ================= -->
+<div id="main-site">
+
+  <!-- ABOUT THE CLUB -->
+  <section id="about">
+    <div class="section-head reveal">
+      <span class="kicker">The club</span>
+      <div class="about-brand-row">
+        <h1 class="about-brand chrome-text">AUBECORE</h1>
+      </div>
+      <h2 class="about-heading">About The Club</h2>
+    </div>
+    <div class="about-single reveal">
+      <div class="about-copy">
+        <p>Step into the good times with  AUBE . No stress, no rules—just great vibes, cool people, and the best parties in town."</p>
+        <p>Your new favorite weekend spot starts right here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO / FEATURED POSTER -->
+  <section id="hero">
+    <div class="hero-tag reveal" id="heroKicker">This is what's happening at AUBE</div>
+    <h1 class="reveal" id="heroHeadline">The next room opens soon.</h1>
+
+    <div class="poster reveal" id="mainPoster">
+      <div class="poster-frame" id="mainPosterFrame">
+        <img src="images/poster.jpg" alt="poster.jpg">
+      </div>
+      <div class="poster-meta">
+        <h3 id="posterEventName">Halloween</h3>
+        <p style="color:var(--beige-dim); font-size:.85rem; margin:.4rem 0 0;" id="posterShortInfo"></p>
+        <div class="rows">
+          <div class="row"><b>Date</b><span id="posterDate">Oct 24, 2026</span></div>
+          <div class="row"><b>Time</b><span id="posterTime">5pm - 11pm</span></div>
+          <div class="row"><b>Location</b><span id="posterLocation">ECR</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="register-cta-wrap reveal">
+      <div class="member-hint"><b id="smallMemberMsg">40 strangers</b> have already joined this club — and counting…</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-head reveal">
+      <span class="kicker">Reach us</span>
+      <h2>Contact The Organizers</h2>
+    </div>
+    <div class="contact-grid reveal">
+      <a class="contact-card glass" id="contactPhone" href="https://wa.me/919884556781" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8.5 8.7c.2-.5.5-.5.8-.5h.6c.2 0 .4 0 .6.4.2.5.7 1.7.8 1.8.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.9 1.5 2 2.4 1.4 1.1 2 1.2 2.3 1.1.3-.1.6-.5.8-.8.2-.3.4-.2.6-.1.2.1 1.6.8 1.9 1 .3.1.5.2.5.4 0 .2 0 1-.4 1.4-.3.4-1.1.9-2.2.9-2.3 0-4.9-1.6-6.6-3.3-1.6-1.6-2.7-3.5-2.9-4.1-.1-.4-.4-1.1.1-1.7z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="label">Call / WhatsApp</span>
+        <span class="value" id="contactPhoneVal">9884556781</span>
+      </a>
+      <a class="contact-card glass" id="contactInstagram" href="https://www.instagram.com/club_aube" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="label">Instagram</span>
+        <span class="value" id="contactInstaVal">club_aube</span>
+      </a>
+      <a class="contact-card glass" id="contactEmail" href="mailto:clubaube2026@gmail.com">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="label">Email</span>
+        <span class="value" id="contactEmailVal">clubaube2026@gmail.com</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- TICKETS -->
+  <section id="tickets">
+    <div class="section-head reveal">
+      <span class="kicker">Get in the room</span>
+      <h2>Get Your Ticket</h2>
+    </div>
+    <div class="poster small reveal" id="smallPoster" style="margin-bottom:1.6rem;">
+      <div class="poster-frame" id="smallPosterFrame">
+        <img src="images/poster.jpg" alt="poster.jpg">
+      </div>
+      <div class="poster-meta">
+        <h3 id="smallPosterName">Halloween</h3>
+        <div class="rows">
+          <div class="row"><b>Date</b><span id="smallPosterDate">Oct 24, 2026</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ticket-status reveal">
+      <span class="status-pill open">Registrations are open</span>
+      <span class="status-pill avail">Tickets available</span>
+    </div>
+    <div style="margin-top:2rem;" class="reveal">
+      <button class="btn btn-primary" id="buyTicketsBtn">Buy Tickets</button>
+    </div>
+  </section>
+
+  <!-- ================= GUIDELINES & SAFETY (all in one box) ================= -->
+  <section id="guidelines" class="info-page">
+    <div class="section-head reveal">
+      <span class="kicker">ECR, Chennai · Strangers welcome</span>
+      <h2 class="chrome-text">AUBE Halloween Party</h2>
+      <p>Guidelines &amp; Safety</p>
+    </div>
+    <div class="info-card glass reveal">
+      <h4 class="info-group-title">Alcohol &amp; Safety</h4>
+      <ul class="info-list">
+        <li>Alcohol served at the event · <b>21+ only, ID mandatory</b></li>
+        <li>Entry to the party 18+ · alcohol strictly as per law (21+)</li>
+        <li>Photography / videography on-site — attending implies consent to be featured</li>
+        <li>Cab tie-up encouraged — <b>no drink and drive</b></li>
+        <li>Management may stop service to anyone visibly intoxicated — please drink responsibly</li>
+      </ul>
+
+      <h4 class="info-group-title">Party Rules</h4>
+      <ul class="info-list">
+        <li>Entry strictly 18+, <b>valid government ID mandatory</b></li>
+        <li>Zero tolerance for harassment or aggressive behavior</li>
+        <li><b>No drugs of any kind</b> — zero exceptions</li>
+        <li>Your belongings are your own responsibility — we're not liable for anything lost</li>
+        <li>Go safe after 11 PM — we're not responsible for anything beyond that</li>
+        <li>For event info, check our website or kindly DM us</li>
+      </ul>
+
+      <h4 class="info-group-title">Event Timing</h4>
+      <ul class="info-list">
+        <li><b>Entry</b> — 4:00 pm to 6:00 pm</li>
+        <li><b>Gates close sharp at 6:00 pm</b> — no entry after</li>
+        <li><b>Event ends sharp by 11:00 pm</b> — everyone should wind up</li>
+        <li>Come early, enjoy, be responsible.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CLOSING STORY -->
+  <section id="closing">
+    <span class="closing-eyebrow reveal">AUBECORE</span>
+    <h2 class="closing-headline reveal chrome-text">A room full of strangers.<br>A night you'll remember.</h2>
+    <div class="closing-lines reveal">
+      <span>You arrive alone.</span>
+      <span>You move with the crowd.</span>
+      <span>You leave knowing a few more faces.</span>
+    </div>
+    <div class="closing-tagline reveal">that's AUBECORE.</div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="section-head reveal">
+      <span class="kicker">What people say</span>
+      <h2>From the room</h2>
+    </div>
+    <div class="reviews-layout reveal">
+      <div class="review-featured glass" id="reviewFeatured"></div>
+      <div class="reviews-side" id="reviewsSide"></div>
+    </div>
+    <div class="reviews-more reveal">
+      <button class="btn btn-ghost" id="reviewsToggle" type="button">More from the room ↓</button>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section id="final">
+    <h2 class="reveal chrome-text">Thank You</h2>
+    <div class="sub reveal">See you at AUBE.</div>
+    <div class="final-links reveal">
+      <button class="pill-cta" id="spotSeatBtnFinal" type="button">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3l7 4v10l-7 4-7-4V7l7-4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M12 3v18" stroke="currentColor" stroke-width="1.2" opacity=".5"/>
+        </svg>
+        Spot Your Seat
+      </button>
+      <a class="btn btn-ghost" id="finalInstagram" href="#" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn btn-ghost" id="finalEmail" href="#">Email</a>
+    </div>
+  </section>
+
+  <footer>AUBECORE — the digital home of AUBE.</footer>
+</div>
+
+<!-- ================= LIGHTBOX ================= -->
+<div id="lightbox">
+  <button class="close" id="lightboxClose">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- ================= MODAL: REGISTRATION (Spot Your Seat) ================= -->
+<div class="modal-overlay" id="modalRegister">
+  <div class="modal">
+    <button class="close-x" data-close-modal>✕</button>
+    <h3>Register For AUBE</h3>
+    <div class="modal-sub">A few details and you're on the list.</div>
+    <form id="registerForm" novalidate>
+      <div class="field">
+        <label for="regName">Full Name</label>
+        <input type="text" id="regName" placeholder="Your name" autocomplete="name">
+        <div class="err" id="errName"></div>
+      </div>
+      <div class="field">
+        <label for="regEmail">Email</label>
+        <input type="email" id="regEmail" placeholder="you@example.com" autocomplete="email">
+        <div class="err" id="errEmail"></div>
+      </div>
+      <div class="field">
+        <label for="regPhone">Phone Number</label>
+        <input type="tel" id="regPhone" placeholder="10-digit mobile number" autocomplete="tel">
+        <div class="err" id="errPhone"></div>
+      </div>
+      <div class="field">
+        <label for="regGuests">Number Of Guests</label>
+        <input type="number" id="regGuests" placeholder="e.g. 1" min="1" step="1">
+        <div class="err" id="errGuests"></div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" id="registerSubmitBtn" style="width:100%;">Confirm Registration</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= MODAL: REGISTRATION CONFIRMED ================= -->
+<div class="modal-overlay" id="modalRegisterConfirmed">
+  <div class="modal" style="text-align:center;">
+    <button class="close-x" data-close-modal>✕</button>
+    <div class="success-icon">✓</div>
+    <h3>You're On The List</h3>
+    <div class="modal-sub">Your place at AUBE is confirmed. We can't wait to see you.</div>
+    <button class="btn btn-chrome" data-close-modal style="width:100%;">Continue Exploring</button>
+  </div>
+</div>
+
+<!-- ================= MODAL: JOIN THE CIRCLE ================= -->
+<div class="modal-overlay" id="modalJoinCircle">
+  <div class="modal">
+    <button class="close-x" data-close-modal>✕</button>
+    <h3>Join The Circle</h3>
+    <div class="modal-sub">Leave your details and become part of AUBE.</div>
+    <form id="joinCircleForm" novalidate>
+      <div class="field">
+        <label for="joinName">Full Name</label>
+        <input type="text" id="joinName" placeholder="Your name" autocomplete="name">
+        <div class="err" id="joinErrName"></div>
+      </div>
+      <div class="field">
+        <label for="joinEmail">Email</label>
+        <input type="email" id="joinEmail" placeholder="you@example.com" autocomplete="email">
+        <div class="err" id="joinErrEmail"></div>
+      </div>
+      <div class="field">
+        <label for="joinPhone">Phone Number</label>
+        <input type="tel" id="joinPhone" placeholder="10-digit mobile number" autocomplete="tel">
+        <div class="err" id="joinErrPhone"></div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" id="joinCircleSubmitBtn" style="width:100%;">Join The Circle</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= MODAL: JOIN CONFIRMED ================= -->
+<div class="modal-overlay" id="modalJoinConfirmed">
+  <div class="modal" style="text-align:center;">
+    <button class="close-x" data-close-modal>✕</button>
+    <div class="success-icon">✓</div>
+    <h3>You're In</h3>
+    <div class="modal-sub">Welcome to the circle. We'll be in touch.</div>
+    <button class="btn btn-chrome" data-close-modal style="width:100%;">Continue Exploring</button>
+  </div>
+</div>
+
+<!-- ================= MODAL: TICKET SELECTION ================= -->
+<div class="modal-overlay" id="modalTickets">
+  <div class="modal">
+    <button class="close-x" data-close-modal>✕</button>
+    <h3>Select Your Tickets</h3>
+    <div class="modal-sub">How many persons? Maximum 2 tickets per customer.</div>
+    <div class="qty-select">
+      <div class="qty-btn" data-qty="1"><b>1</b><span>Person</span></div>
+      <div class="qty-btn" data-qty="2"><b>2</b><span>Persons</span></div>
+    </div>
+    <div class="price-summary">
+      <div class="price-row"><span>Price per ticket</span><span id="priceEach">—</span></div>
+      <div class="price-row"><span>Quantity</span><span id="priceQty">—</span></div>
+      <div class="price-row total"><span>Total</span><span id="priceTotal">—</span></div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" id="proceedToPaymentBtn" disabled style="width:100%;">Proceed</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL: DETAILS / REGISTER ================= -->
+<div class="modal-overlay" id="modalPayment">
+  <div class="modal">
+    <button class="close-x" data-close-modal>✕</button>
+    <h3>Register</h3>
+    <div class="modal-sub">Enter your details to reserve your spot.</div>
+    <form id="ticketRegForm" novalidate>
+      <div class="field">
+        <label for="tName">Full Name</label>
+        <input type="text" id="tName" placeholder="Your name">
+        <div class="err" id="tErrName"></div>
+      </div>
+      <div class="field">
+        <label for="tEmail">Email</label>
+        <input type="email" id="tEmail" placeholder="you@example.com">
+        <div class="err" id="tErrEmail"></div>
+      </div>
+      <div class="field">
+        <label for="tPhone">Phone Number</label>
+        <input type="tel" id="tPhone" placeholder="10-digit mobile number">
+        <div class="err" id="tErrPhone"></div>
+      </div>
+      <div class="price-summary">
+        <div class="price-row"><span id="payQtyLabel">1 ticket</span><span id="payQtyPrice">—</span></div>
+        <div class="price-row total"><span>Total</span><span id="payTotal">—</span></div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" id="confirmPaymentBtn" style="width:100%;">Register</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= MODAL: DM FOR TICKETS ================= -->
+<div class="modal-overlay" id="modalDM">
+  <div class="modal" style="text-align:center;">
+    <button class="close-x" data-close-modal>✕</button>
+    <div class="success-icon">✓</div>
+    <h3>You're Registered</h3>
+    <div class="dm-label">DM for tickets</div>
+    <div class="modal-sub">Message us on WhatsApp or Instagram to get your tickets.</div>
+    <div class="dm-links">
+      <a class="btn btn-primary" id="dmWhatsApp" href="https://wa.me/919884556781" target="_blank" rel="noopener">WhatsApp · 98845 56781</a>
+      <a class="btn btn-chrome" href="https://www.instagram.com/club_aube" target="_blank" rel="noopener">Instagram · @club_aube</a>
+    </div>
+  </div>
+</div>
+
+<canvas id="confetti-canvas"></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.3/confetti.browser.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
+ 
