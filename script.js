@@ -23,10 +23,21 @@ THIS HALLOWEEN, NOBODY LEAVES INNOCENT. 👹`,
     poster: "poster.jpg"
   },
 
+  // ---------------------------------------------------------------
+  // TICKET OPTIONS — edit prices / labels / persons here.
+  //   id      : unique key
+  //   persons : how many people the pass admits
+  //   label   : text shown under the number on the button
+  //   price   : TOTAL price for that pass (not per person)
+  // ---------------------------------------------------------------
   tickets: {
     currency: "₹",
-    pricePerTicket: 699,
-    maxPerCustomer: 2
+    maxPerCustomer: 2,          // max persons per customer
+    options: [
+      { id: "single", persons: 1, label: "Person",      price: 699  },
+      { id: "double", persons: 2, label: "Persons",     price: 1398 },
+      { id: "couple", persons: 2, label: "Couple Pass", price: 1200 }
+    ]
   },
 
   members: {
@@ -188,6 +199,7 @@ window.AUBE_CONFIG = AUBE_CONFIG;
       });
     }
 
+    renderTicketOptions();
     updatePriceUI();
   }
 
@@ -500,36 +512,49 @@ window.AUBE_CONFIG = AUBE_CONFIG;
   }
 
   /* ---------------------------------------------------------------
-     TICKET FLOW: quantity -> details -> "DM for tickets"
+     TICKET FLOW: choose pass -> details -> "DM for tickets"
   --------------------------------------------------------------- */
-  let selectedQty = 0;
-
-  document.querySelectorAll(".qty-btn").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      const qty = Number(btn.dataset.qty);
-      if(qty > CFG.tickets.maxPerCustomer) return;
-      selectedQty = qty;
-      document.querySelectorAll(".qty-btn").forEach(b=>b.classList.remove("selected"));
-      btn.classList.add("selected");
-      updatePriceUI();
-      document.getElementById("proceedToPaymentBtn").disabled = false;
-    });
-  });
+  let selectedOption = null; // one of CFG.tickets.options
 
   function money(n){ return `${CFG.tickets.currency}${n.toLocaleString("en-IN")}`; }
+
+  function renderTicketOptions(){
+    const box = document.getElementById("qtySelect");
+    if(!box) return;
+    box.innerHTML = "";
+    CFG.tickets.options.forEach(opt=>{
+      if(opt.persons > CFG.tickets.maxPerCustomer) return;
+      const btn = document.createElement("div");
+      btn.className = "qty-btn";
+      btn.dataset.id = opt.id;
+      btn.innerHTML =
+        `<b>${opt.persons}</b>` +
+        `<span>${escapeHtml(opt.label)}</span>` +
+        `<span style="display:block;margin-top:.35rem;color:var(--beige);font-weight:600;">${money(opt.price)}</span>`;
+      btn.addEventListener("click", ()=>{
+        selectedOption = opt;
+        box.querySelectorAll(".qty-btn").forEach(b=>b.classList.remove("selected"));
+        btn.classList.add("selected");
+        updatePriceUI();
+        document.getElementById("proceedToPaymentBtn").disabled = false;
+      });
+      box.appendChild(btn);
+    });
+  }
+
   function updatePriceUI(){
-    const each = CFG.tickets.pricePerTicket;
-    document.getElementById("priceEach").textContent = money(each);
-    document.getElementById("priceQty").textContent = selectedQty || "—";
-    document.getElementById("priceTotal").textContent = selectedQty ? money(each*selectedQty) : "—";
+    setText("priceEach", selectedOption ? selectedOption.label : "—");
+    setText("priceQty", selectedOption ? selectedOption.persons : "—");
+    setText("priceTotal", selectedOption ? money(selectedOption.price) : "—");
   }
 
   document.getElementById("proceedToPaymentBtn").addEventListener("click", ()=>{
-    if(!selectedQty || selectedQty > CFG.tickets.maxPerCustomer) return;
-    const total = selectedQty * CFG.tickets.pricePerTicket;
-    document.getElementById("payQtyLabel").textContent = `${selectedQty} ticket${selectedQty>1?"s":""} × ${money(CFG.tickets.pricePerTicket)}`;
-    document.getElementById("payQtyPrice").textContent = money(total);
-    document.getElementById("payTotal").textContent = money(total);
+    if(!selectedOption || selectedOption.persons > CFG.tickets.maxPerCustomer) return;
+    const p = selectedOption.persons;
+    document.getElementById("payQtyLabel").textContent =
+      `${selectedOption.label} · ${p} ${p>1 ? "persons" : "person"}`;
+    document.getElementById("payQtyPrice").textContent = money(selectedOption.price);
+    document.getElementById("payTotal").textContent = money(selectedOption.price);
     closeModal("modalTickets");
     openModal("modalPayment");
   });
@@ -537,6 +562,7 @@ window.AUBE_CONFIG = AUBE_CONFIG;
   const ticketRegForm = document.getElementById("ticketRegForm");
   ticketRegForm.addEventListener("submit", async (e)=>{
     e.preventDefault();
+    if(!selectedOption) return;
 
     const nameEl = document.getElementById("tName");
     const emailEl = document.getElementById("tEmail");
@@ -550,15 +576,17 @@ window.AUBE_CONFIG = AUBE_CONFIG;
     const btn = document.getElementById("confirmPaymentBtn");
     setLoading(btn, true, "Register");
 
-    const total = selectedQty * CFG.tickets.pricePerTicket;
+    const opt = selectedOption;
+    const total = opt.price;
     const name = nameEl.value.trim();
 
     const result = await Backend.register({
       name,
       email: emailEl.value.trim(),
       phone: phoneEl.value.trim(),
-      guests: selectedQty,
-      quantity: selectedQty,
+      guests: opt.persons,
+      quantity: opt.persons,
+      ticketType: opt.label,
       amount: total,
       eventId: CFG.event.id + "_ticket"
     }, CFG.api.ticket);   // ticket form -> ticket Google Sheet
@@ -571,7 +599,7 @@ window.AUBE_CONFIG = AUBE_CONFIG;
     }
 
     // pre-filled WhatsApp message
-    const msg = `Hi AUBE! I'm ${name}. I registered for ${selectedQty} ticket${selectedQty>1?"s":""} (${money(total)}) for ${CFG.event.name}.`;
+    const msg = `Hi AUBE! I'm ${name}. I registered for the ${opt.label} (${opt.persons} ${opt.persons>1?"persons":"person"}, ${money(total)}) for ${CFG.event.name}.`;
     document.getElementById("dmWhatsApp").href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 
     closeModal("modalPayment");
@@ -580,7 +608,7 @@ window.AUBE_CONFIG = AUBE_CONFIG;
     burstConfetti();
 
     // reset selection for next time
-    selectedQty = 0;
+    selectedOption = null;
     document.querySelectorAll(".qty-btn").forEach(b=>b.classList.remove("selected"));
     document.getElementById("proceedToPaymentBtn").disabled = true;
     updatePriceUI();
