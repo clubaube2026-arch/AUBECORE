@@ -353,14 +353,12 @@
   <div class="modal">
     <button class="close-x" data-close-modal>✕</button>
     <h3>Select Your Tickets</h3>
-    <div class="modal-sub">How many persons? Maximum 2 tickets per customer.</div>
-    <div class="qty-select">
-      <div class="qty-btn" data-qty="1"><b>1</b><span>Person</span></div>
-      <div class="qty-btn" data-qty="2"><b>2</b><span>Persons</span></div>
-    </div>
+    <div class="modal-sub">Choose your pass. Maximum 2 persons per customer.</div>
+    <!-- buttons are generated from AUBE_CONFIG.tickets.options in script.js -->
+    <div class="qty-select" id="qtySelect"></div>
     <div class="price-summary">
-      <div class="price-row"><span>Price per ticket</span><span id="priceEach">—</span></div>
-      <div class="price-row"><span>Quantity</span><span id="priceQty">—</span></div>
+      <div class="price-row"><span>Pass</span><span id="priceEach">—</span></div>
+      <div class="price-row"><span>Persons</span><span id="priceQty">—</span></div>
       <div class="price-row total"><span>Total</span><span id="priceTotal">—</span></div>
     </div>
     <div class="form-actions">
@@ -424,4 +422,5 @@
 
 </body>
 </html>
+ 
  
