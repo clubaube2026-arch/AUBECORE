@@ -36,7 +36,7 @@ THIS HALLOWEEN, NOBODY LEAVES INNOCENT. 👹`,
     options: [
       { id: "single", persons: 1, label: "Person",      price: 699  },
       { id: "double", persons: 2, label: "Persons",     price: 1398 },
-      { id: "couple", persons: 2, label: "Couple Pass", price: 1200 }
+      { id: "single", persons: 1, label: "Pass",        price: 1200 }
     ]
   },
 
