@@ -20,7 +20,7 @@ becomes
 🖤 MAKE IT A NIGHT TO REMEMBER.
 
 THIS HALLOWEEN, NOBODY LEAVES INNOCENT. 👹`,
-    poster: "images/poster.jpg"
+    poster: "poster.jpg"
   },
 
   tickets: {
